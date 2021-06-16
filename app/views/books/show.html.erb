@@ -1,0 +1,10 @@
+<div class="book-body">
+  
+  <p>Title：<%= @book.title %></p>
+  <p>Option：<%= @book.body %></p>
+  
+  <% if @post_image.user == current_user %>
+    <%= link_to "削除", post_image_path(@post_image), method: :delete %>
+  <% end %>
+  
+</div>

@@ -1,0 +1,9 @@
+<h1>Books</h1>
+<% @users.each do |user| %>
+  <div>
+    <!-- ここにプロフィール画像を入れる -->
+    
+    <p>Title：<%= link_to "Title", book_path(book.id) %></p>
+    <p>Option：<%= book.body %></p>
+  </div>
+<% end %>
