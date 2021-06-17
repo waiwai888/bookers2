@@ -1,3 +1,11 @@
+<div class="notice">
+  <% if @book.errors.any? %>
+    <%= @book.errors.count %>件のエラーが発生しました
+    <% @book.errors.full_messages.each do |message| %>
+      <%= message %>
+    <% end %>
+  <% end %>
+</div>
 <h1>Editing Book</h1>
 <!-- form_with部分 -->
 <%= form_with model:@book, local: true do |f| %>
@@ -8,5 +16,5 @@
   <%= f.submit 'Update Book' %>
 <% end %>
 
-<%= link_to "Show", book_path(book.id) %>
+<%= link_to "Show", user_path(current_user) %>
 <%= link_to "Back", books_path %>
