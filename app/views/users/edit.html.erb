@@ -1,6 +1,6 @@
 <div class="notice">
   <% if @user.errors.any? %>
-    <%= @user.errors.count %>件のエラーが発生しました
+    <%= @user.errors.count %>件のerrorが発生しました
     <% @user.errors.full_messages.each do |message| %>
       <%= message %>
     <% end %>

@@ -1,26 +1,38 @@
-<h1>User info</h1>
+<div class="row">
+  <h1>User info</h1>
     <div class="profile-container">
     <%= attachment_image_tag user, :profile_image, :fill, 100, 100 ,fallback: "noimage.jpeg" %>
-      <table class="table">
-        <tr>
-          <th>name</th>
-          <th><h3 class="profile-name"><%= user.name %></h3></th>
-        </tr>
-        <tr>
-          <th>introduction</th>
-          <th><h3 class="profile-introduction"><%= user.introduction %></h3></th>
-        </tr>
-        <% if user.id == current_user.id %>
-          <%= link_to "編集ボタン", edit_user_path(user) %>
-        <% end %>
-      </table>
+    <table class="table">
+      <tr>
+        <th>name</th>
+        <th><h3 class="profile-name"><%= user.name %></h3></th>
+      </tr>
+      <tr>
+        <th>introduction</th>
+        <th><h3 class="profile-introduction"><%= user.introduction %></h3></th>
+      </tr>
+      <tr>
+        <td>
+          <%= link_to edit_user_path(user.id), class: "btn btn-outline-secondary btn-block", method: :get do %>
+            <i class="fas fa-user-cog edit_user_255"></i> 
+          <% end %>
+        </td>
+      </tr>
+    </table>
     </div>
-
-<h1>New book</h1>
-<%= form_with model: book, local:true do |f| %>
-  <h4>Title</h4>
-  <%= f.text_field :title %>
-  <h4>Option</h4>
-  <%= f.text_area :body %>
-  <%= f.submit 'Create book' %>
-<% end %>
+  
+  <h1>New book</h1>
+  <%= form_with model: @newbook, local:true do |f| %>
+    <div class="form-group">
+      <label for="book_title">Title</label>
+      <input class="form-control book_title" type="text" name="book[title]" id="book_title" />
+    </div>
+    <div class="form-group">
+      <label for="book_opinion">Opinion</label>
+      <textarea class="form-control book_body" name="book[body]" id="book_body"></textarea>
+    </div>
+    <div class="form-group">
+      <input type="submit" name="commit" value="Create Book" class="btn btn-success" data-disable-with="Create Book" />
+    </div>
+  <% end %>
+</div>

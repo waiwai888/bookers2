@@ -1,16 +1,25 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :correct_user, only: [:edit, :update ]
+  before_action :correct_user, only: [:update ]
+  before_action :forbid_login_user, only: [:edit]
+
+  def forbid_login_user
+    @user = User.find(params[:id])
+    unless @user.id == current_user.id
+      redirect_to user_path(current_user)
+    end
+  end
 
   def correct_user
     @user = User.find(params[:id])
-    unless @user.user.id == current_user.id
+    unless @user.id == current_user.id
       redirect_to root_path
     end
   end
 
   def index
     @users = User.all
+    @book = Book.new
   end
 
   def show
@@ -26,10 +35,11 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update(user_params)
-      flash[:notice] = "successfully"
       redirect_to user_path(current_user)
+      flash[:success] = "successfully"
     else
       render :edit
+      flash[:error] = "error"
     end
   end
 
