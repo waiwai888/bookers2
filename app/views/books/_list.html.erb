@@ -1,24 +1,22 @@
 <div class="row">
   <h1>User info</h1>
     <div class="profile-container">
-    <%= attachment_image_tag user, :profile_image, :fill, 100, 100 ,fallback: "noimage.jpeg" %>
-    <table class="table">
-      <tr>
-        <th>name</th>
-        <th><h3 class="profile-name"><%= user.name %></h3></th>
-      </tr>
-      <tr>
-        <th>introduction</th>
-        <th><h3 class="profile-introduction"><%= user.introduction %></h3></th>
-      </tr>
-      <tr>
-        <td>
-          <%= link_to edit_user_path(user.id), class: "btn btn-outline-secondary btn-block", method: :get do %>
-            <i class="fas fa-user-cog edit_user_255"></i> 
-          <% end %>
-        </td>
-      </tr>
-    </table>
+      <%= attachment_image_tag user, :profile_image, :fill, 100, 100 ,fallback: "noimage.jpeg" %>
+      <table class="table">
+        <tbody>
+          <tr></tr>
+          <tr>
+            <th>name</th>
+            <th><div class="profile-name"><%= user.name %></div></th>
+          <tr>
+            <th>introduction</th>
+            <th><div class="profile-introduction"><%= user.introduction %></div></th>
+          </tr>
+        </tbody>
+      </table>
+      <%= link_to edit_user_path(user.id), class: "btn btn-outline-secondary btn-block", method: :get do %>
+        <i class="fas fa-user-cog edit_user_255"></i> 
+      <% end %>
     </div>
   
   <h1>New book</h1>
