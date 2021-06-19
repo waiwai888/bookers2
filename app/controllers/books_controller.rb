@@ -2,6 +2,7 @@ class BooksController < ApplicationController
   before_action :authenticate_user!
   before_action :correct_user, only: [:update ]
   before_action :forbid_login_user, only: [:edit]
+  before_action :set_book, only: [:index, :show, :edit]
   
   def forbid_login_user
     @book = Book.find(params[:id])
@@ -18,13 +19,14 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = Book.new(book_params)
-    @book.user_id = current_user.id
-    if @book.save
-      redirect_to book_path(@book.id)
+    @newbook = Book.new(book_params)
+    @newbook.user_id = current_user.id
+    if @newbook.save
+      redirect_to book_path(@newbook.id)
       flash[:success] = "successfully"
     else
       @books = Book.all
+      @user = @newbook.user
       render :index
       flash[:error] = "error"
     end
@@ -74,4 +76,7 @@ class BooksController < ApplicationController
     params.require(:book).permit(:title, :body)
   end
 
+  def set_book 
+    @newbook = Book.new
+  end
 end

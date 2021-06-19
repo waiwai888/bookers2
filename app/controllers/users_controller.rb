@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :correct_user, only: [:update ]
   before_action :forbid_login_user, only: [:edit]
+  before_action :set_book
 
   def forbid_login_user
     @user = User.find(params[:id])
@@ -47,6 +48,10 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :profile_image, :introduction)
+  end
+  
+  def set_book 
+    @newbook = Book.new
   end
 
 end

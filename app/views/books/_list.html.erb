@@ -22,15 +22,15 @@
   <h1>New book</h1>
   <%= form_with model: @newbook, local:true do |f| %>
     <div class="form-group">
-      <label for="book_title">Title</label>
-      <input class="form-control book_title" type="text" name="book[title]" id="book_title" />
+      <%= f.label :title, 'Title' %>
+      <%= f.text_field :title, class: 'form-control book_title' %>
     </div>
     <div class="form-group">
-      <label for="book_opinion">Opinion</label>
-      <textarea class="form-control book_body" name="book[body]" id="book_body"></textarea>
+      <%= f.label :body, 'Opinion' %>
+      <%= f.text_field :body, class: 'form-control book_body' %>
     </div>
     <div class="form-group">
-      <input type="submit" name="commit" value="Create Book" class="btn btn-success" data-disable-with="Create Book" />
+      <%= f.submit 'Create Book', class: 'btn btn-success' %>
     </div>
   <% end %>
 </div>

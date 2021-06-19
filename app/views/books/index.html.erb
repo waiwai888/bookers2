@@ -1,7 +1,7 @@
 <div class="notice">
-  <% if @book.errors.any? %>
-    <%= @book.errors.count %>件のerrorが発生しました
-    <% @book.errors.full_messages.each do |message| %>
+  <% if @newbook.errors.any? %>
+    <%= @newbook.errors.count %>件のerrorが発生しました
+    <% @newbook.errors.full_messages.each do |message| %>
       <%= message %>
     <% end %>
   <% end %>
