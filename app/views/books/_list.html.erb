@@ -15,10 +15,10 @@
         </tbody>
       </table>
       <%= link_to edit_user_path(user.id), class: "btn btn-outline-secondary btn-block", method: :get do %>
-        <i class="fas fa-user-cog edit_user_255"></i> 
+        <i class="fas fa-user-cog edit_user_255"></i>
       <% end %>
     </div>
-  
+
   <h1>New book</h1>
   <%= form_with model: @newbook, local:true do |f| %>
     <div class="form-group">
