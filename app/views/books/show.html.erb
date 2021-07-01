@@ -16,10 +16,22 @@
           </td>
           <td><%= link_to @book.title, book_path(@book.id) %></td>
           <td><%= @book.body %></td>
-          <% if @user.id == current_user.id %>
-            <td><%= link_to 'Edit', edit_book_path(@book.id), class: 'btn btn-sm btn-success edit_book_603' %></td>
-            <td><%= link_to 'Destroy', book_path, method: :delete, class: 'btn btn-sm btn-danger destroy_book_603' %></td>
-          <% end %>
+          <td></td>
+          <div class="comments">
+            <p>コメント件数：<%= @book.post_comments.count %></p>
+            <% @book.post_comments.each do |post_comment| %>
+              <%= post_comment.user.name %>
+            <% end %>
+          </div>
+          <div class="new-comment">
+            <%= form_with(model:[@book, @post_comment], local: true) do |f| %>
+              <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
+              <%= f.submit "送信" %>
+            <% end %>
+          </div>
+
+
+</div>
         </tr>
       </tbody>
     </table>

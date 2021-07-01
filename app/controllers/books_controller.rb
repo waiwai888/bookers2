@@ -3,7 +3,7 @@ class BooksController < ApplicationController
   before_action :correct_user, only: [:update ]
   before_action :forbid_login_user, only: [:edit]
   before_action :set_book, only: [:index, :show, :edit]
-  
+
   def forbid_login_user
     @book = Book.find(params[:id])
     unless @book.user.id == current_user.id
@@ -46,6 +46,7 @@ class BooksController < ApplicationController
     @newbook = Book.new
     @book = Book.find(params[:id])
     @user = @book.user
+    @post_comment = PostComment.new
   end
 
   def edit
@@ -76,7 +77,7 @@ class BooksController < ApplicationController
     params.require(:book).permit(:title, :body)
   end
 
-  def set_book 
+  def set_book
     @newbook = Book.new
   end
 end
