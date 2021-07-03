@@ -43,14 +43,16 @@ class UsersController < ApplicationController
       flash[:error] = "error"
     end
   end
-
+  
+  
+  
   private
 
   def user_params
     params.require(:user).permit(:name, :profile_image, :introduction)
   end
-  
-  def set_book 
+
+  def set_book
     @newbook = Book.new
   end
 
