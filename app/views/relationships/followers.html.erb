@@ -1,13 +1,14 @@
 <h1>Follower Users</h1>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>image</th>
-          <th>name</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @users.each do |user| %>
+<% if @users.count > 0 %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>image</th>
+        <th>name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
         <tr>
           <td><%= attachment_image_tag user, :profile_image, :fill, 40, 40 ,fallback: "noimage.jpeg"%></td>
           <td><%= user.name %></td>
@@ -22,6 +23,9 @@
           </td>
           <td><%= link_to "Show", user_path(user.id) %></td>
         </tr>
-        <% end %>
-      </tbody>
-    </table>
+      <% end %>
+    </tbody>
+  </table>
+  <% else %>
+    <p>ユーザーはいません</p>
+  <% end %>

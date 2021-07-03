@@ -41,10 +41,8 @@
               </p>
             <% end %>
           </td>
-          <td>
-            <div class="comments">
-              <p>コメント件数：<%= @book.book_comments.count %></p>
-            </div>
+          <td class="comments">
+            <p>コメント件数：<%= @book.book_comments.count %></p>
           </td>
         </tr>
         <% @book_comments.each do |book_comment| %>
