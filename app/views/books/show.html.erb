@@ -33,9 +33,9 @@
             <p>コメント件数：<%= @book.book_comments.count %></p>
           </td>
         </tr>
-       
-       <%= render 'books/commentlist', user: @user, book_comments: @book_comments %>
-       
+
+       <%= render 'commentlist', user: @user, book_comments: @book_comments %>
+
       </tbody>
     </table>
     <div class="new-comment">
