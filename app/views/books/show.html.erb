@@ -33,13 +33,13 @@
             <p>コメント件数：<%= @book.book_comments.count %></p>
           </td>
         </tr>
-
-       <%= render 'commentlist', user: @user, book_comments: @book_comments %>
-
       </tbody>
     </table>
+    <div id="comment-<%= @book.id %>">
+      <%= render 'commentlist', user: @user, book_comments: @book_comments %>
+    </div>
     <div class="new-comment">
-      <%= form_with(model:[@book, @book_comment], local: true) do |f| %>
+      <%= form_with model: [@book, @book_comment] , remote: true do |f| %>
         <%= f.text_area :comment, rows:'5',placeholder: "コメントをここに" %>
         <%= f.submit "送信" %>
       <% end %>
