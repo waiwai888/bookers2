@@ -15,12 +15,6 @@ class User < ApplicationRecord
   has_many :followings, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
 
-  attachment :profile_image
-  validates :name, presence: true
-  validates :name,length: { minimum: 2, maximum: 20 }
-  validates :name, uniqueness: true
-  validates :introduction, length: { maximum: 50 }
-
   def follow(user_id)
     active_relationships.create(followed_id: user_id)
   end
@@ -32,5 +26,25 @@ class User < ApplicationRecord
   def following?(user)
     followings.include?(user)
   end
+
+  def self.search(search,word)
+    if search == "forward_match"
+      @user = User.where("name LIKE?","#{word}%")
+    elsif search == "backward_match"
+      @user = User.where("name LIKE?","%#{word}")
+    elsif search == "perfect_match"
+      @user = User.where("name LIKE?","#{word}")
+    elsif search == "partial_match"
+      @user = User.where("name LIKE?","%#{word}%")
+    else
+      @user = User.all
+    end
+  end
+
+  attachment :profile_image
+  validates :name, presence: true
+  validates :name,length: { minimum: 2, maximum: 20 }
+  validates :name, uniqueness: true
+  validates :introduction, length: { maximum: 50 }
 
 end
