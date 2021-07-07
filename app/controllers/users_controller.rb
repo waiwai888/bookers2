@@ -43,9 +43,9 @@ class UsersController < ApplicationController
       flash[:error] = "error"
     end
   end
-  
-  
-  
+
+
+
   private
 
   def user_params
