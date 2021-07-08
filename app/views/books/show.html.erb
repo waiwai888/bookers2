@@ -7,7 +7,10 @@
 <% end %>
 <div class='row'>
   <div class="col-md-3">
-    <%= render 'books/list', user: @user, book: @newbook %>
+    <h1>User info</h1>
+      <%= render 'users/info', user: @user %>
+    <h1>New book</h1>
+      <%= render 'books/form', user: @user, book: @newbook %>
   </div>
   <div class="col-md-8 offset-md-1">
     <h1>Book detail</h1>
