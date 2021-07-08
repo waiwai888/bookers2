@@ -71,3 +71,5 @@ gem "refile-mini_magick"
 gem 'kaminari','~> 1.2.1'
 
 gem 'jquery-rails'
+
+gem 'impressionist', '~>1.6.1'

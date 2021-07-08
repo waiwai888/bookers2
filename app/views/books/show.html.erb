@@ -8,9 +8,9 @@
 <div class='row'>
   <div class="col-md-3">
     <h1>User info</h1>
-      <%= render 'users/info', user: @user %>
+      <%= render 'users/info', user: @user, isRoom: @isRoom, room: @room, entry: @entry, roomId: @roomId %>
     <h1>New book</h1>
-      <%= render 'books/form', user: @user, book: @newbook, isRoom: @isRoom, room: @room, entry: @entry, roomId: @roomId %>
+      <%= render 'books/form', user: @user, book: @newbook %>
   </div>
   <div class="col-md-8 offset-md-1">
     <h1>Book detail</h1>
@@ -33,8 +33,9 @@
             <%= render 'favorites/favorite', book: @book %>
           </td>
           <td class="comments">
-            <p>コメント件数：<%= @book.book_comments.count %></p>
+            コメント件数：<%= @book.book_comments.count %>
           </td>
+          <td>閲覧数: <%=  @book.impressionist_count %></td>
         </tr>
       </tbody>
     </table>

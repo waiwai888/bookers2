@@ -3,6 +3,7 @@ class BooksController < ApplicationController
   before_action :correct_user, only: [:update ]
   before_action :forbid_login_user, only: [:edit]
   before_action :set_book, only: [:index, :show, :edit]
+  impressionist :actions=> [:show]
 
   def forbid_login_user
     @book = Book.find(params[:id])
@@ -48,6 +49,7 @@ class BooksController < ApplicationController
     @user = @book.user
     @book_comment = BookComment.new
     @book_comments = @book.book_comments
+    impressionist(@book, nil, unique: [:ip_address])
 
     @currentUserEntry=Entry.where(user_id: current_user.id)
     @userEntry=Entry.where(user_id: @user.id)
