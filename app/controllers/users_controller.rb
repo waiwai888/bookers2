@@ -27,8 +27,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @book = Book.new
     @books = Book.where(user_id: @user.id)
-    @user_books = Book.where(use_id: @user.id, created_at: 0.day.ago.all_day)
-
+    @today_books = Book.where(user_id: @user.id, created_at: 0.day.ago.all_day)
+    @daybefore_books = Book.where(user_id: @user.id, created_at: 1.day.ago.all_day)
   end
 
   def edit
