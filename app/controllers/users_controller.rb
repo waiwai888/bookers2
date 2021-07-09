@@ -29,6 +29,8 @@ class UsersController < ApplicationController
     @books = Book.where(user_id: @user.id)
     @today_books = Book.where(user_id: @user.id, created_at: 0.day.ago.all_day)
     @daybefore_books = Book.where(user_id: @user.id, created_at: 1.day.ago.all_day)
+    @thisweek_books = Book.where(user_id: @user.id, created_at: Date.today.all_week)
+    @lastweek_books = Book.where(user_id: @user.id, created_at: 1.week.ago.all_week)
   end
 
   def edit
