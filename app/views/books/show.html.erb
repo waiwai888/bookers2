@@ -35,7 +35,7 @@
           <td class="comments">
             コメント件数：<%= @book.book_comments.count %>
           </td>
-          <td>閲覧数: <%=  @book.impressionist_count %></td>
+          <td class="view-count">閲覧数: <%= @book.view_counts.count %></td>
         </tr>
       </tbody>
     </table>
