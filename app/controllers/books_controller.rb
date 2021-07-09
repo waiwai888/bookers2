@@ -36,7 +36,9 @@ class BooksController < ApplicationController
 
   def index
     @book = Book.new
-    @books = Book.includes(:favorited_users).sort {|a,b| b.favorited_users.size <=> a.favorited_users.size}
+    to  = Time.current.at_end_of_day
+    from  = (to - 6.day).at_beginning_of_day
+    @books = Book.includes(:favorited_users).sort {|a,b| b.favorited_users.includes(:favorites).where(created_at: from...to).size <=> a.favorited_users.includes(:favorites).where(created_at: from...to).size}
     @user = @book.user
     flash[:success] = "successfully"
     flash[:error] = "error"
@@ -91,6 +93,10 @@ class BooksController < ApplicationController
     @book.destroy
     redirect_to books_path
     flash[:success] = "successfully"
+  end
+
+  def weekly_rank
+    @ranks = Book.last_week
   end
 
   private

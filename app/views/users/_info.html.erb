@@ -37,19 +37,8 @@
           <% end %>
         </th>
         <th>
-          <% if user.id != current_user.id %>
-            <% if current_user.following?(user) %>
-              <% if isRoom == true %>
-                <p><a href="/rooms/<%= roomId %>">chatへ</a>
-              <% else %>
-                <%= form_for room do |f| %>
-                  <%= fields_for entry do |e| %>
-                    <%= e.hidden_field :user_id, :value=> user.id %>
-                  <% end %>
-                  <%= f.submit "chatを始める" %>
-                <% end %>
-              <% end %>
-            <% end %>
+          <% if current_user != user && current_user.following?(user) && user.following?(current_user) %>
+            <%= link_to "chatを始める", message_path(user.id) %>
           <% end %>
         </th>
       </tr>
