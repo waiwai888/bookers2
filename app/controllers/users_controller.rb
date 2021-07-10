@@ -27,10 +27,20 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @book = Book.new
     @books = Book.where(user_id: @user.id)
-    @today_books = Book.where(user_id: @user.id, created_at: 0.day.ago.all_day)
-    @daybefore_books = Book.where(user_id: @user.id, created_at: 1.day.ago.all_day)
-    @thisweek_books = Book.where(user_id: @user.id, created_at: Date.today.all_week)
-    @lastweek_books = Book.where(user_id: @user.id, created_at: 1.week.ago.all_week)
+    @today_books = Book.where(user_id: @user.id, created_at: Time.now.all_day)
+    @daybefore_books = Book.where(user_id: @user.id, created_at: time.yesterday.all_day)
+
+
+    this_day = Date.today
+    this_saturday = this_day - (this_day.wday - 6)
+    this_friday = this_day - (this_day.wday - 5)
+    last_this_saturday = this_saturday - 7
+    last_friday = this_friday - 7
+    week_before_last_saturday = last_this_saturday - 7
+
+    @thisweek_books = Book.where(user_id: @user.id, created_at: (last_this_saturday..this_friday))
+    @lastweek_books = Book.where(user_id: @user.id, created_at: (week_before_last_saturday..0.days.ago.prev_week(:friday))
+
   end
 
   def edit
