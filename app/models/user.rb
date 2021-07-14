@@ -18,7 +18,7 @@ class User < ApplicationRecord
   has_many :messages
   has_many :entries
   has_many :rooms, through: :entries
-  
+
   has_many :view_counts, dependent: :destroy
 
   def follow(user_id)

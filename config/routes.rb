@@ -5,8 +5,8 @@ Rails.application.routes.draw do
   get 'home/about' => 'homes#index'
   get 'search' => 'searches#search'
   resources :books, only: [:create, :index, :show, :edit, :update, :destroy] do
-    resources :book_comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
+    resources :book_comments, only: [:create, :destroy]
   end
   resources :users, only: [:index, :show, :edit, :update] do
     resource :relationships, only: [:create, :destroy]

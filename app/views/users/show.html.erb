@@ -4,12 +4,12 @@
     <h1>User info</h1>
       <%= render 'info', user: @user %>
     <h1>New book</h1>
-      <%= render 'books/form', user: @user, book: @book %>
+      <%= render 'books/form', book: @book %>
   </div>
   <div class="col-md-8 offset-md-1">
     <h3>Books</h3>
-    <%= render 'books/index', books: @books, user: @user %>
-    
+    <%= render 'books/index', books: @books %>
+
     <!--投稿数表示-->
     <div class="books_counts">
       <table class="table">
@@ -22,9 +22,9 @@
         </thead>
         <tbody>
           <tr>
-            <td><%= @today_books.count %></td>
-            <td><%= @daybefore_books.count %></td>
-        
+            <td></td>
+            <td></td>
+
           </tr>
         </tbody>
         <thead>
@@ -36,9 +36,6 @@
         </thead>
         <tbody>
           <tr>
-            <td><%= @thisweek_books.count %></td>
-            <td><%= @lastweek_books.count %></td>
-           
           </tr>
         </tbody>
       </table>
