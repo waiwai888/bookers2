@@ -22,9 +22,9 @@
         </thead>
         <tbody>
           <tr>
-            <td><%= @tdbooks.count %></td>
-            <td><%= @ysbooks.count %></td>
-
+            <td><%= @tdbooks %></td>
+            <td><%= @ysbooks %></td>
+            <td><%= @day_before_ratio %>%</td>
           </tr>
         </tbody>
         <thead>
@@ -36,8 +36,9 @@
         </thead>
         <tbody>
           <tr>
-            <td><%= @this_books.count %></td>
-            <td><%= @last_books.count %></td>
+            <td><%= @this_books %></td>
+            <td><%= @last_books %></td>
+            <td><%= @week_before_ratio %>%</td>
           </tr>
         </tbody>
       </table>
