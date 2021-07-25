@@ -27,6 +27,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @book = Book.new
     @books = Book.where(user_id: @user.id)
+    
     this_day = Date.today
     @tdbooks = Book.where(user_id: @user.id, created_at: Date.today.beginning_of_day..Date.today.end_of_day).count
     @ysbooks = Book.where(user_id: @user.id, created_at: Date.yesterday.beginning_of_day..Date.yesterday.end_of_day).count
